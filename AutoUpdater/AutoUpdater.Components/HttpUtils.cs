@@ -219,6 +219,11 @@ namespace AutoUpdater.Components
                     }
                     downloadCompleteCallback?.Invoke(e);
                 };
+                var dir = new FileInfo(filename).Directory;
+                if (!dir.Exists)
+                {
+                    dir.Create();
+                }
                 client.DownloadFileAsync(new Uri(url), filename);
             }
             catch (Exception ex)

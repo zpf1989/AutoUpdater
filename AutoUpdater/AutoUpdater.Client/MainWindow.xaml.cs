@@ -130,6 +130,8 @@ namespace AutoUpdater.Client
                 _logger.LogInfo(string.Format("结束\t——\t{0}", conf.ToString()));
             }
             Notify("更新完毕！将在5s后重新启动主程序。");
+            //更新客户端版本信息
+            AppConfig.Update("version", ClientContext.NewestVersion);
             linkRetry.IsEnabled = true;
             _cntTimer.Start();
             await Task.Delay(5000);

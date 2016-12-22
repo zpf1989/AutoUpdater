@@ -31,6 +31,7 @@ namespace AutoUpdater.Client
                 ClientContext.Version));
             if (rst.code == ResultCode.NewVersion)
             {
+                ClientContext.NewestVersion = rst.data.version;
                 MessageBoxResult msgRst = MessageBox.Show(string.Format("发现新版本[{0}]，当前版本[{1}]，建议升级到最新版本。\r\n是否升级？",
                     rst.data.version, ClientContext.Version),
                     "提示", MessageBoxButton.YesNo, MessageBoxImage.Question);

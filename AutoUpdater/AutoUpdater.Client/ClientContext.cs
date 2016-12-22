@@ -10,6 +10,11 @@ namespace AutoUpdater.Client
 {
     public class ClientContext
     {
+        static ClientContext()
+        {
+            NewestVersion = Version;
+        }
+
         public static string SvrUrl
         {
             get
@@ -56,5 +61,7 @@ namespace AutoUpdater.Client
                 return TargetAppPath + "/" + Target;
             }
         }
+
+        public static string NewestVersion { get; set; }
     }
 }

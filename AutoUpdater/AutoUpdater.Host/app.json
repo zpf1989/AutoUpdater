@@ -5,6 +5,11 @@
     "version": "1.1.1.1"
   },
   {
+    "appid": "frame",
+    "appname": "客户端框架",
+    "version": "1.1.1.1"
+  },
+  {
     "appid": "card",
     "appname": "一卡通管理系统",
     "version": "1.1.1.1"
