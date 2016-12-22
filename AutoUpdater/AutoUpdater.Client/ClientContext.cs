@@ -18,6 +18,21 @@ namespace AutoUpdater.Client
             }
         }
 
+        public static string AppId
+        {
+            get
+            {
+                return AppSettings.Get("appid");
+            }
+        }
+
+        public static string Version
+        {
+            get
+            {
+                return AppSettings.Get("version");
+            }
+        }
         public static string Target
         {
             get

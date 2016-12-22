@@ -73,7 +73,9 @@ namespace AutoUpdater.Client
         {
             linkRetry.IsEnabled = false;
             Notify("正在下载升级包，请稍后...");
-            HttpUtils.Download(string.Format("{0}/api/client/upgrade", ClientContext.SvrUrl.TrimEnd('/', '\\')), zipFile,
+            HttpUtils.Download(
+                    url: string.Format("{0}/api/client/upgrade?appid={1}", ClientContext.SvrUrl.TrimEnd('/', '\\'), ClientContext.AppId),
+                    filename: zipFile,
                     downloadProgressChangeCallback: o =>
                     {
                         string msg = string.Format("下载进度：{0}\t{1}/{2}", o.ProgressPercentage, o.BytesReceived, o.TotalBytesToReceive);

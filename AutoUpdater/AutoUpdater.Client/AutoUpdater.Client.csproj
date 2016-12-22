@@ -138,6 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="upgrade.ico" />
+    <Content Include="test.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Upgrade\temp\readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

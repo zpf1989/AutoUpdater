@@ -25,15 +25,19 @@ namespace AutoUpdater.Client
 
         private void CheckUpdate()
         {
-            var version = AppSettings.Get("version");
-            var rst = HttpUtils.GetResult(string.Format("{0}/api/client/check?v2={1}", ClientContext.SvrUrl.TrimEnd('/', '\\'), version));
+            var rst = HttpUtils.GetResult(string.Format("{0}/api/client/check?appid={1}&v2={2}",
+                ClientContext.SvrUrl.TrimEnd('/', '\\'),
+                ClientContext.AppId,
+                ClientContext.Version));
             if (rst.code == ResultCode.NewVersion)
             {
-                MessageBoxResult msgRst = MessageBox.Show(string.Format("发现新版本[{0}]，当前版本[{1}]，建议升级到最新版本。\r\n是否升级？", rst.data.version, version),
+                MessageBoxResult msgRst = MessageBox.Show(string.Format("发现新版本[{0}]，当前版本[{1}]，建议升级到最新版本。\r\n是否升级？",
+                    rst.data.version, ClientContext.Version),
                     "提示", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (msgRst != MessageBoxResult.Yes)
                 {
                     this.Shutdown(-1);
+                    return;
                 }
                 //关闭目标程序
                 CloseTargetApp();

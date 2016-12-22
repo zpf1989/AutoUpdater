@@ -1,0 +1,17 @@
+﻿[
+  {
+    "appid": "test",
+    "appname": "测试系统",
+    "version": "1.1.1.1"
+  },
+  {
+    "appid": "card",
+    "appname": "一卡通管理系统",
+    "version": "1.1.1.1"
+  },
+  {
+    "appid": "community",
+    "appname": "社区综合题管理系统",
+    "version": "1.1.1.1"
+  }
+]
