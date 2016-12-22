@@ -1,0 +1,46 @@
+﻿<Window x:Class="AutoUpdater.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoUpdater.Client"
+        mc:Ignorable="d"
+        Title="客户端升级程序"
+        Height="160" Width="360"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource winStyle}"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        KeyDown="Window_KeyDown"
+        Loaded="Window_Loaded"
+        >
+    <Window.Resources>
+        <Style x:Key="btnStyle" TargetType="Button">
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Width" Value="60"/>
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="LightBlue" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="36"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="290"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Content="客户端升级程序" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="14" FontWeight="Bold"/>
+            <ProgressBar x:Name="progressBar" Grid.Row="1" Grid.Column="1" Height="30" Minimum="0" Maximum="100"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Hyperlink x:Name="linkRetry" Click="linkRetry_Click" IsEnabled="False">重试</Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="txtInfo"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" x:Name="txtTimeCnt" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        </Grid>
+    </Border>
+</Window>

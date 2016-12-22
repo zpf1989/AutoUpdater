@@ -1,0 +1,8 @@
+/AutoUpdater/packages
+/AutoUpdater/.vs
+/AutoUpdater/AutoUpdater.Client/obj
+/AutoUpdater/AutoUpdater.Client/bin
+/AutoUpdater/AutoUpdater.Host/obj
+/AutoUpdater/AutoUpdater.Host/bin
+/AutoUpdater/AutoUpdater.Components/obj
+/AutoUpdater/AutoUpdater.Components/bin

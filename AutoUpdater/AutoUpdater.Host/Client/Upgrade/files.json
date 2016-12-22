@@ -1,0 +1,7 @@
+﻿[
+  {
+    "path": "~/test.txt",
+    "type": "file",
+    "opt": "add"
+  }
+]
