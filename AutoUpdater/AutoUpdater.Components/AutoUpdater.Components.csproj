@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
     <Compile Include="AppClient.cs" />
-    <Compile Include="HttpHelper.cs" />
     <Compile Include="HttpResult.cs" />
     <Compile Include="HttpUtils.cs" />
     <Compile Include="Logger.cs" />
