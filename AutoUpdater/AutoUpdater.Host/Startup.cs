@@ -1,4 +1,5 @@
-﻿using AutoUpdater.Components;
+﻿
+using MyNet.Components.Logger;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace AutoUpdater.Host
     public class Startup
     {
         static HttpConfiguration _httpConfig;
-        static Logger<Startup> _logger = new Logger<Startup>();
+        static ILogHelper<Startup> _logger = LogHelperFactory.GetLogHelper<Startup>();
 
         public void Configuration(IAppBuilder appBuilder)
         {

@@ -105,9 +105,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoUpdater.Components\AutoUpdater.Components.csproj">
-      <Project>{7ec3fb44-0042-4a49-9562-2c33b845f112}</Project>
-      <Name>AutoUpdater.Components</Name>
+    <ProjectReference Include="..\..\..\work\Share\MyNet.Components\MyNet.Components.csproj">
+      <Project>{9ed019a0-a26a-4725-aa70-2b52bf7a5416}</Project>
+      <Name>MyNet.Components</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

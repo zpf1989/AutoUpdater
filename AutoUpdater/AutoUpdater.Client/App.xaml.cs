@@ -1,4 +1,7 @@
-﻿using AutoUpdater.Components;
+﻿
+using MyNet.Components.Http;
+using MyNet.Components.Logger;
+using MyNet.Components.Result;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,7 +19,7 @@ namespace AutoUpdater.Client
     /// </summary>
     public partial class App : Application
     {
-        Logger<App> _logger = new Logger<App>();
+        ILogHelper<App> _logger = LogHelperFactory.GetLogHelper<App>();
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //检查更新

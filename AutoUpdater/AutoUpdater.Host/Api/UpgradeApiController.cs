@@ -1,4 +1,7 @@
-﻿using AutoUpdater.Components;
+﻿using MyNet.Components.Compress;
+using MyNet.Components.Logger;
+using MyNet.Components.Result;
+using MyNet.Components.Upgrade;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,7 +20,7 @@ namespace AutoUpdater.Host.Api
     public class UpgradeApiController : ApiController
     {
         private const string Msg_CheckUpgrade = "检查新版本";
-        private Logger<UpgradeApiController> _logger = new Logger<UpgradeApiController>();
+        private ILogHelper<UpgradeApiController> _logger = LogHelperFactory.GetLogHelper<UpgradeApiController>();
         private static IList<AppClient> _apps;
         private static string _zipFileTemp = HostContext.RootPath + "/Clients/{0}/upgrade.zip";
 
@@ -35,34 +38,34 @@ namespace AutoUpdater.Host.Api
 
         [HttpGet]
         [Route("check")]
-        public HttpResult CheckUpgrade(string appid, string v2)
+        public OptResult CheckUpgrade(string appid, string v2)
         {
-            HttpResult rst = null;
+            OptResult rst = null;
             var app = _apps.Where(a => a.appid == appid).FirstOrDefault();
             if (app == null)
             {
-                rst = HttpResult.Build(ResultCode.ParamError, Msg_CheckUpgrade + ",未识别的appid！");
+                rst = OptResult.Build(ResultCode.ParamError, Msg_CheckUpgrade + ",未识别的appid！");
                 return rst;
             }
             Version _v2 = null;//客户端传递来的版本
             if (!Version.TryParse(v2, out _v2))
             {
-                rst = HttpResult.Build(ResultCode.ParamError, Msg_CheckUpgrade + ",非法版本格式！");
+                rst = OptResult.Build(ResultCode.ParamError, Msg_CheckUpgrade + ",非法版本格式！");
                 return rst;
             }
             Version _v1 = null;//服务端设置的最新客户端版本
             if (!Version.TryParse(app.version, out _v1))
             {
-                rst = HttpResult.Build(ResultCode.ParamError, Msg_CheckUpgrade + ",非法版本格式！");
+                rst = OptResult.Build(ResultCode.ParamError, Msg_CheckUpgrade + ",非法版本格式！");
                 return rst;
             }
             if (_v1 > _v2)
             {
                 //有新版本
-                rst = HttpResult.Build(ResultCode.NewVersion, Msg_CheckUpgrade + ",有新版本", new { version = app.version });
+                rst = OptResult.Build(ResultCode.NewVersion, Msg_CheckUpgrade + ",有新版本", new { version = app.version });
                 return rst;
             }
-            rst = HttpResult.Build(ResultCode.NewestVersion, Msg_CheckUpgrade + ",当前已是最新版本");
+            rst = OptResult.Build(ResultCode.NewestVersion, Msg_CheckUpgrade + ",当前已是最新版本");
             return rst;
         }
 

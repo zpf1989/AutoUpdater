@@ -131,12 +131,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoUpdater.Components\AutoUpdater.Components.csproj">
-      <Project>{7EC3FB44-0042-4A49-9562-2C33B845F112}</Project>
-      <Name>AutoUpdater.Components</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="upgrade.ico" />
     <Content Include="test.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -156,6 +150,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\work\Share\MyNet.Components\MyNet.Components.csproj">
+      <Project>{9ed019a0-a26a-4725-aa70-2b52bf7a5416}</Project>
+      <Name>MyNet.Components</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

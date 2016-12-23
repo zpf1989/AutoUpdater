@@ -1,4 +1,5 @@
-﻿using AutoUpdater.Components;
+﻿
+using MyNet.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace AutoUpdater.Host
             {
                 if (string.IsNullOrEmpty(_svrName))
                 {
-                    var val = AppSettings.Get("svrname");
+                    var val = AppSettingUtils.Get("svrname");
                     _svrName = string.IsNullOrEmpty(val) ? _defaultSvrName : val;
                 }
 
@@ -35,7 +36,7 @@ namespace AutoUpdater.Host
         {
             get
             {
-                var url = AppSettings.Get("host");
+                var url = AppSettingUtils.Get("host");
                 return url;
             }
         }
@@ -60,7 +61,7 @@ namespace AutoUpdater.Host
         {
             get
             {
-                var val = AppSettings.Get("debug");
+                var val = AppSettingUtils.Get("debug");
                 bool result = false;
                 Boolean.TryParse(val, out result);
                 return result;

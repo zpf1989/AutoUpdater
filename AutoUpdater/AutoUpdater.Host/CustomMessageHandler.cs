@@ -1,4 +1,6 @@
-﻿using AutoUpdater.Components;
+﻿
+using MyNet.Components.Logger;
+using MyNet.Components.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,7 @@ namespace AutoUpdater.Host
     /// </summary>
     public class CustomMessageHandler : DelegatingHandler
     {
-        Logger<CustomMessageHandler> _logger = new Logger<CustomMessageHandler>();
+        ILogHelper<CustomMessageHandler> _logger = LogHelperFactory.GetLogHelper<CustomMessageHandler>();
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (HostContext.Debug)
@@ -41,7 +43,7 @@ namespace AutoUpdater.Host
                              //如果异常了，重新设置task.Result.Content，屏蔽异常详细信息
                              if (!task.Result.IsSuccessStatusCode)
                              {
-                                 task.Result.Content = new ObjectContent<object>(new HttpResult
+                                 task.Result.Content = new ObjectContent<object>(new OptResult
                                  {
                                      code = ResultCode.Fail,
                                      msg = ((int)task.Result.StatusCode).ToString() + ":" + task.Result.ReasonPhrase

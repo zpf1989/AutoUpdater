@@ -1,4 +1,5 @@
-﻿using AutoUpdater.Components;
+﻿
+using MyNet.Components;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +20,7 @@ namespace AutoUpdater.Client
         {
             get
             {
-                return AppSettings.Get("svrurl");
+                return AppSettingUtils.Get("svrurl");
             }
         }
 
@@ -27,7 +28,7 @@ namespace AutoUpdater.Client
         {
             get
             {
-                return AppSettings.Get("appid");
+                return AppSettingUtils.Get("appid");
             }
         }
 
@@ -35,14 +36,14 @@ namespace AutoUpdater.Client
         {
             get
             {
-                return AppSettings.Get("version");
+                return AppSettingUtils.Get("version");
             }
         }
         public static string Target
         {
             get
             {
-                return AppSettings.Get("target");
+                return AppSettingUtils.Get("target");
             }
         }
 

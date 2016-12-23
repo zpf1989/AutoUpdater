@@ -1,4 +1,9 @@
-﻿using AutoUpdater.Components;
+﻿
+using MyNet.Components;
+using MyNet.Components.Compress;
+using MyNet.Components.Http;
+using MyNet.Components.Logger;
+using MyNet.Components.Upgrade;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -27,7 +32,7 @@ namespace AutoUpdater.Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Logger<MainWindow> _logger = new Logger<MainWindow>();
+        private ILogHelper<MainWindow> _logger = LogHelperFactory.GetLogHelper<MainWindow>();
         private static string upgradePath = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\') + "/Upgrade";
         private static string zipFile = upgradePath + "/upgrade.zip";
         private static string tempPath = upgradePath + "/temp";
@@ -44,8 +49,13 @@ namespace AutoUpdater.Client
                 {
                     return;
                 }
-                txtTimeCnt.Text = (--timeCnt).ToString() + "s";
+                SetSecondCount(--timeCnt);
             };
+        }
+
+        private void SetSecondCount(int sec)
+        {
+            txtTimeCnt.Text = sec + "s";
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -131,9 +141,11 @@ namespace AutoUpdater.Client
             }
             Notify("更新完毕！将在5s后重新启动主程序。");
             //更新客户端版本信息
-            AppConfig.Update("version", ClientContext.NewestVersion);
+            _logger.LogInfo("修改主程序版本信息，最新版本：" + ClientContext.NewestVersion);
+            AppSettingUtils.Update("version", ClientContext.NewestVersion);
             linkRetry.IsEnabled = true;
             _cntTimer.Start();
+            SetSecondCount(5);
             await Task.Delay(5000);
             this.DialogResult = true;
             this.Close();

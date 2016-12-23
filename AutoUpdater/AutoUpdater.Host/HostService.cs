@@ -1,5 +1,6 @@
-﻿using AutoUpdater.Components;
+﻿
 using Microsoft.Owin.Hosting;
+using MyNet.Components.Logger;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace AutoUpdater.Host
 {
     public partial class HostService : ServiceBase
     {
-        private static Logger<HostService> _logger = new Logger<HostService>();
+        private static ILogHelper<HostService> _logger = LogHelperFactory.GetLogHelper<HostService>();
         private static List<IDisposable> _instances = new List<IDisposable>();
         public HostService()
         {
